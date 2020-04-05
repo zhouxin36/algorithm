@@ -5,16 +5,16 @@ import "fmt"
 func main() {
 	k := 3
 	arr := []int{4, 5, 8, 2}
-	//var kthLargest = Constructor(k, arr)
-	//fmt.Println(kthLargest.Add(3))
-	//fmt.Println(kthLargest.Add(5))
-	//fmt.Println(kthLargest.Add(10))
-	//fmt.Println(kthLargest.Add(9))
-	//fmt.Println(kthLargest.Add(4))
+	var kthLargest = Constructor(k, arr)
+	fmt.Println(kthLargest.Add(3))
+	fmt.Println(kthLargest.Add(5))
+	fmt.Println(kthLargest.Add(10))
+	fmt.Println(kthLargest.Add(9))
+	fmt.Println(kthLargest.Add(4))
 
 	k = 7
 	arr = []int{-10, 1, 3, 1, 4, 10, 3, 9, 4, 5, 1}
-	var kthLargest = Constructor(k, arr)
+	kthLargest = Constructor(k, arr)
 	fmt.Println(kthLargest.Add(3))
 }
 

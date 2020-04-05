@@ -5,7 +5,6 @@ import (
 	"leetcode"
 )
 
-//noinspection GoDuplicate
 type TreeNode = leetcode.TreeNode
 
 func main() {

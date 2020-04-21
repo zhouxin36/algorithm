@@ -2,16 +2,14 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 	"math"
 )
 
-type TreeNode = leetcode.TreeNode
-
 func main() {
 	null := math.MinInt32
-	fmt.Println(rangeSumBST(leetcode.ToTreeNode([]int{10, 5, 15, 3, 7, null, 18}), 7, 15) == 32)
-	fmt.Println(rangeSumBST(leetcode.ToTreeNode([]int{10, 5, 15, 3, 7, 13, 18, 1, null, 6}), 6, 10) == 23)
+	fmt.Println(rangeSumBST(ToTreeNode([]int{10, 5, 15, 3, 7, null, 18}), 7, 15) == 32)
+	fmt.Println(rangeSumBST(ToTreeNode([]int{10, 5, 15, 3, 7, 13, 18, 1, null, 6}), 6, 10) == 23)
 }
 
 /**

@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 )
-
-type TreeNode = leetcode.TreeNode
 
 func main() {
 	fmt.Println(!leafSimilar(&TreeNode{Val: 1, Left: &TreeNode{Val: 2}, Right: &TreeNode{Val: 3}}, &TreeNode{Val: 1, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 2}}))

@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 )
-
-type TreeNode = leetcode.TreeNode
 
 func main() {
 	a2 := TreeNode{

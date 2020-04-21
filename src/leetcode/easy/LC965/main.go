@@ -2,16 +2,14 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 	"math"
 )
 
-type TreeNode = leetcode.TreeNode
-
 func main() {
 	null := math.MinInt32
-	fmt.Println(isUnivalTree(leetcode.ToTreeNode([]int{1, 1, 1, 1, 1, null, 1})))
-	fmt.Println(!isUnivalTree(leetcode.ToTreeNode([]int{2, 2, 2, 5, 2})))
+	fmt.Println(isUnivalTree(ToTreeNode([]int{1, 1, 1, 1, 1, null, 1})))
+	fmt.Println(!isUnivalTree(ToTreeNode([]int{2, 2, 2, 5, 2})))
 }
 
 /**

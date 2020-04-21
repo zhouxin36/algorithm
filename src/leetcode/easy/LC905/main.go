@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 )
 
 func main() {
 	//== "[2,4,3,1]"
-	fmt.Println(leetcode.IntToString(sortArrayByParity([]int{3, 1, 2, 4})))
+	fmt.Println(IntToString(sortArrayByParity([]int{3, 1, 2, 4})))
 }
 func sortArrayByParity(A []int) []int {
 	head, tag := 0, len(A)-1

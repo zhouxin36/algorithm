@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 	"math"
 )
-
-type TreeNode = leetcode.TreeNode
 
 func main() {
 	fmt.Println(minDiffInBST(&TreeNode{Val: 4, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}}, Right: &TreeNode{Val: 6}}) == 1)

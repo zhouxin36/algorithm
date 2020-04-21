@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 	"math"
 )
 
-type TreeNode = leetcode.TreeNode
-
 func main() {
 	null := math.MinInt32
-	fmt.Println(isCousins(leetcode.ToTreeNode([]int{1, 2, 3, null, 4, null, 5}), 5, 4))
-	fmt.Println(!isCousins(leetcode.ToTreeNode([]int{1, 2, 3, 4}), 4, 3))
-	fmt.Println(!isCousins(leetcode.ToTreeNode([]int{1, 2, 3, null, 4}), 2, 3))
+	fmt.Println(isCousins(ToTreeNode([]int{1, 2, 3, null, 4, null, 5}), 5, 4))
+	fmt.Println(!isCousins(ToTreeNode([]int{1, 2, 3, 4}), 4, 3))
+	fmt.Println(!isCousins(ToTreeNode([]int{1, 2, 3, null, 4}), 2, 3))
 }
 func isCousins(root *TreeNode, x int, y int) bool {
 	return depCousins(root, x, y, 0) == -2

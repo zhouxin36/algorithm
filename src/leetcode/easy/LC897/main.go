@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-	"leetcode"
+	. "leetcode"
 	"math"
 )
 
-type TreeNode = leetcode.TreeNode
-
 func main() {
 	null := math.MinInt32
-	node := leetcode.ToTreeNode([]int{5, 3, 6, 2, 4, null, 8, 1, null, null, null, 7, 9})
+	node := ToTreeNode([]int{5, 3, 6, 2, 4, null, 8, 1, null, null, null, 7, 9})
 	node = increasingBST(node)
-	fmt.Println(leetcode.ToString(node))
+	fmt.Println(ToString(node))
 }
 
 var pref *TreeNode

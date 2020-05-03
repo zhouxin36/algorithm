@@ -2,3 +2,5 @@
 * [LC633  Fermat Theorem 费马定理](https://leetcode.com/problems/sum-of-square-numbers/solution/)
 * [LC686  Rabin-Karp (Rolling Hash) 滚动哈希算法](https://leetcode.com/problems/repeated-string-match/)
 * [LC796 KMP/Rabin-Karp (Rolling Hash)](https://leetcode.com/problems/rotate-string/)
+* [LC1425 滑动窗口](https://leetcode.com/problems/constrained-subset-sum/)
+    * [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)

@@ -5,42 +5,49 @@ import (
 )
 
 func main() {
-	fmt.Println(longestPalindromeSubseq("aaa") == 3)
-	fmt.Println(longestPalindromeSubseq("bbbab") == 4)
-	fmt.Println(longestPalindromeSubseq("cbbd") == 2)
+	fmt.Println(longestPalindromeSubseq1("aaa") == 3)
+	fmt.Println(longestPalindromeSubseq1("bbbab") == 4)
+	fmt.Println(longestPalindromeSubseq1("cbbd") == 2)
 }
+
+/**
+1 2 3 ......n
+1 2 3 ...
+......
+1
+
+当列为n时，取得最大值
+*/
 func longestPalindromeSubseq(s string) int {
 	length := len(s)
 	if length < 2 {
 		return length
 	}
-	res := 1
 	m := make([]int, length)
 	n := make([]int, length)
 	p := make([]int, length)
-	gap := 0
-	for ; gap < length; gap++ {
-		for i := gap; i < length; i++ {
-			if s[i] == s[i-gap] {
+	for gap := 0; gap < length; gap++ {
+		for i := 0; i < length-gap; i++ {
+			if s[i+gap] == s[i] {
 				if gap < 3 {
-					p[i-gap] = gap + 1
+					// gap为0时，子串为1；为1时，子串为2
+					p[i] = gap + 1
 				} else {
-					p[i-gap] = m[i-gap+1] + 2
+					// i+1为i缩短一个字符，m与p差两个gap；表示除去头和尾的子串
+					p[i] = m[i+1] + 2
 				}
 			} else {
-				if n[i-gap] > n[i-gap+1] {
-					p[i-gap] = n[i-gap]
+				if n[i] > n[i+1] {
+					p[i] = n[i]
 				} else {
-					p[i-gap] = n[i-gap+1]
+					p[i] = n[i+1]
 				}
-			}
-			if res < p[i-gap] {
-				res = p[i-gap]
 			}
 		}
 		m, n, p = n, p, m
 	}
-	return res
+	// 最长子序列长度为整串（gap最大时）
+	return n[0]
 }
 
 func longestPalindromeSubseq1(s string) int {
@@ -48,7 +55,6 @@ func longestPalindromeSubseq1(s string) int {
 	if length < 2 {
 		return length
 	}
-	var res int
 	arr := make([][]int, length)
 	for i := 0; i < length; i++ {
 		arr[i] = make([]int, length-i)
@@ -70,10 +76,8 @@ func longestPalindromeSubseq1(s string) int {
 					arr[i-gap][gap] = arr[i-gap+1][gap-1]
 				}
 			}
-			if res < arr[i-gap][gap] {
-				res = arr[i-gap][gap]
-			}
 		}
 	}
-	return res
+	// 最长子序列长度为整串（gap最大时）
+	return arr[0][length-1]
 }

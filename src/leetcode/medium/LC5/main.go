@@ -69,27 +69,29 @@ func longestPalindrome4(s string) string {
 	m := make([]bool, length)
 	n := make([]bool, length)
 	p := make([]bool, length)
-	gap := 0
-	var maxi, maxGap int
-	for ; gap < length; gap++ {
-		for i := gap; i < length; i++ {
-			if s[i] == s[i-gap] {
+
+	var start, maxGap int
+	for gap := 0; gap < length; gap++ {
+		for i := 0; i < length-gap; i++ {
+			if s[i+gap] == s[i] {
 				if gap < 3 {
-					p[i-gap] = true
+					// gap为0时，子串为1；为1时，子串为2
+					p[i] = true
 				} else {
-					p[i-gap] = m[i-gap+1]
+					// i+1为i缩短一个字符，m与p差两个gap；表示除去头和尾的子串
+					p[i] = m[i+1]
 				}
-				if p[i-gap] && maxGap < gap {
-					maxi = i
+				if p[i] && maxGap < gap {
+					start = i
 					maxGap = gap
 				}
 			} else {
-				p[i-gap] = false
+				p[i] = false
 			}
 		}
 		m, n, p = n, p, m
 	}
-	return s[maxi-maxGap : maxi+1]
+	return s[start : start+maxGap+1]
 }
 
 /**
@@ -169,33 +171,23 @@ func longestPalindrome1(s string) string {
 	if len(s) < 2 {
 		return s
 	}
-	var max, idx int
-	for i := 0; i < len(s); i++ {
-		// 以i为中心辐射，回文子串为奇数
-		left, right := i, i
-		for left >= 0 && right < len(s) && (s)[left] == (s)[right] {
+	var r, l, left, right int
+	for left < len(s) {
+		// 以i为中心扩散，匹配相同的字符
+		for right+1 < len(s) && (s)[left] == (s)[right+1] {
+			right++
+		}
+		// 以left，right，向两边扩散
+		for left > 0 && right < len(s)-1 && (s)[left-1] == (s)[right+1] {
 			left--
 			right++
 		}
-		n1 := right - left - 1
-		// 以i为中心辐射，回文子串为奇数
-		left, right = i, i+1
-		for left >= 0 && right < len(s) && (s)[left] == (s)[right] {
-			left--
-			right++
+		if r-l < right-left {
+			r, l = right, left
 		}
-		n2 := right - left - 1
-		var n int
-		if n1 > n2 {
-			n = n1
-		} else {
-			n = n2
-		}
-		if n > max {
-			idx = i
-			max = n
-		}
+		// 取中间值
+		left = (left+right)>>1 + 1
+		right = left
 	}
-	end := idx + 1 + max>>1
-	return s[end-max : end]
+	return s[l : r+1]
 }

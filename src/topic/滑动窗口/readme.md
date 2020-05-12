@@ -24,7 +24,7 @@
 ![image](image5.png)
 
 继续重复之前的操作，直到`j`移动到字符串最后一位停止。
-
-* [3. Longest Substring Without Repeating Characters 没有重复字符的最长子串](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-* [1425. Constrained Subsequence Sum 约束子序列总和](https://leetcode.com/problems/constrained-subsequence-sum/)
-* [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit 绝对差小于或等于限制的最长连续子数组](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)
+* questions:
+    * [3. Longest Substring Without Repeating Characters 没有重复字符的最长子串](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+    * [1425. Constrained Subsequence Sum 约束子序列总和](https://leetcode.com/problems/constrained-subsequence-sum/)
+    * [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit 绝对差小于或等于限制的最长连续子数组](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)

@@ -5,18 +5,99 @@ import (
 )
 
 func main() {
-	fmt.Println(longestPalindrome("abcba") == "abcba")
-	fmt.Println(longestPalindrome("abcda") == "a")
-	fmt.Println(longestPalindrome("babad") == "bab")
-	fmt.Println(longestPalindrome("cbbd") == "bb")
+	fmt.Println(longestPalindrome4("abcdbbfcba") == "bb")
+	fmt.Println(longestPalindrome4("bb") == "bb")
+	fmt.Println(longestPalindrome4("abcda") == "a")
+	fmt.Println(longestPalindrome4("abcba") == "abcba")
+	fmt.Println(longestPalindrome4("babad") == "bab")
+	fmt.Println(longestPalindrome4("cbbd") == "bb")
+}
+
+/**
+Manacher算法
+时间复杂度：O(N)
+空间复杂度：O(N)
+*/
+func longestPalindrome(s string) string {
+	if len(s) < 2 {
+		return s
+	}
+	bytes := make([]byte, 2*len(s)+1)
+	p := make([]int, 2*len(s)+1)
+	for i := 0; i < len(s); i++ {
+		bytes[2*i] = '#'
+		bytes[2*i+1] = s[i]
+	}
+	bytes[len(bytes)-1] = '#'
+	var maxRight, center, start int
+	for i := 0; i < len(p); i++ {
+		if i < maxRight {
+			mirror := 2*center - i
+			p[i] = maxRight - i
+			if p[i] > p[mirror] {
+				p[i] = p[mirror]
+			}
+		}
+		left := i - (1 + p[i])
+		right := i + (1 + p[i])
+		for left >= 0 && right < len(p) && bytes[left] == bytes[right] {
+			p[i]++
+			left--
+			right++
+		}
+		if i+p[i] > maxRight {
+			maxRight = i + p[i]
+			center = i
+		}
+		if p[i] > p[start] {
+			start = i
+		}
+	}
+	return s[(start-p[start])>>1 : (start+p[start])>>1]
 }
 
 /**
 动态规划
 时间复杂度：O(N^2)
-空间复杂度：O(N*lgN)
+空间复杂度：O(N)
 */
-func longestPalindrome(s string) string {
+func longestPalindrome4(s string) string {
+	length := len(s)
+	if length < 2 {
+		return s
+	}
+	m := make([]bool, length)
+	n := make([]bool, length)
+	p := make([]bool, length)
+	gap := 0
+	var maxi, maxGap int
+	for ; gap < length; gap++ {
+		for i := gap; i < length; i++ {
+			if s[i] == s[i-gap] {
+				if gap < 3 {
+					p[i-gap] = true
+				} else {
+					p[i-gap] = m[i-gap+1]
+				}
+				if p[i-gap] && maxGap < gap {
+					maxi = i
+					maxGap = gap
+				}
+			} else {
+				p[i-gap] = false
+			}
+		}
+		m, n, p = n, p, m
+	}
+	return s[maxi-maxGap : maxi+1]
+}
+
+/**
+动态规划
+时间复杂度：O(N^2)
+空间复杂度：O((N*2)/2)
+*/
+func longestPalindrome3(s string) string {
 	if len(s) < 2 {
 		return s
 	}

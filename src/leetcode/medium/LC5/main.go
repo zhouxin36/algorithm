@@ -5,16 +5,17 @@ import (
 )
 
 func main() {
-	fmt.Println(longestPalindrome4("abcdbbfcba") == "bb")
-	fmt.Println(longestPalindrome4("bb") == "bb")
-	fmt.Println(longestPalindrome4("abcda") == "a")
-	fmt.Println(longestPalindrome4("abcba") == "abcba")
-	fmt.Println(longestPalindrome4("babad") == "bab")
-	fmt.Println(longestPalindrome4("cbbd") == "bb")
+	fmt.Println(longestPalindrome("babadada") == "adada")
+	fmt.Println(longestPalindrome("abcdbbfcba") == "bb")
+	fmt.Println(longestPalindrome("bb") == "bb")
+	fmt.Println(longestPalindrome("abcda") == "a")
+	fmt.Println(longestPalindrome("abcba") == "abcba")
+	fmt.Println(longestPalindrome("babad") == "bab")
+	fmt.Println(longestPalindrome("cbbd") == "bb")
 }
 
 /**
-Manacher算法
+Manacher 算法
 时间复杂度：O(N)
 空间复杂度：O(N)
 */
@@ -33,9 +34,10 @@ func longestPalindrome(s string) string {
 	for i := 0; i < len(p); i++ {
 		if i < maxRight {
 			mirror := 2*center - i
-			p[i] = maxRight - i
-			if p[i] > p[mirror] {
+			if maxRight-i > p[mirror] {
 				p[i] = p[mirror]
+			} else {
+				p[i] = maxRight - i
 			}
 		}
 		left := i - (1 + p[i])

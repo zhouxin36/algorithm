@@ -9,8 +9,8 @@ func Test_RabinKarp(t *testing.T) {
 		param string
 		index int
 	}{
-		{"112345", -1},
 		{"aabcde", 1},
+		{"112345", -1},
 		{"asfd oaisdufkhasdgfisdfghaskfyaeiurnfkfabcdefaksjfhksjdfhk", 39},
 		{"abcde", 0},
 		{"abcdee", 0},
@@ -20,7 +20,10 @@ func Test_RabinKarp(t *testing.T) {
 	}
 	for _, test := range tests {
 		if got := rk.Search(test.param); got != test.index {
-			t.Errorf("Search(%q) = %v", test.param, got)
+			t.Errorf("rk.Search(%q,%q) = %v", test.param, patString, got)
+		}
+		if got := Search(test.param, patString); got != test.index {
+			t.Errorf("Search(%q,%q) = %v", test.param, patString, got)
 		}
 	}
 }
